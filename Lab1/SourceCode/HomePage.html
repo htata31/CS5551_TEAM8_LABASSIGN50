@@ -3,9 +3,13 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
     <style>
         body {font-family: Arial;}
-
+        .homebody{
+            font-family: Candara;
+            font-size: 18px;
+        }
         /* Style the tab */
         .tab {
             overflow: hidden;
@@ -94,9 +98,20 @@
     <button class="tablinks" onclick="openPage(event, 'Logout')">Logout</button>
 </div>
 
-<div id="Home" class="tabcontent">
+<div id="Home" class="tabcontent " ng-app="homepage" ng-controller="homectrl">
     <h1>Welcome to Lab Assignment-1</h1>
     <p>Excited for doing some fun stuff?</p>
+    <input type="text" placeholder="Search Here" id="searchitem" ng-model="searchitem">
+    <button id="btn" ng-click="getSearchResult()"> Show Result </button>
+    <div class="homebody">
+        <p id="errormsg"></p>
+        <p><b>{{description}}</b></p>
+        <p>{{searchDescription}}</p>
+        <p><b>{{wikiheading}}</b></p>
+        <p><a href="{{wiki}}"> {{wiki}}</a> </p>
+        <p><img src="{{searchimage}}"></p>
+    </div>
+
 </div>
 
 <div id="About Us" class="tabcontent">
@@ -155,6 +170,6 @@
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
 </script>
-
+<script src="HomepageController.js"></script>
 </body>
 </html>
