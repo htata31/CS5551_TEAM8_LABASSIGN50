@@ -1,12 +1,160 @@
+<!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {font-family: Arial;}
 
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #808080;
+            top: 0px;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 60px 12px;
+            height: 100%;
+        }
+        ul.big
+        {
+            line-height: 2.5;
+        }
+        p.Sub-head
+        {
+            font-size: large;
+        }
+        .gitimg{
+            position: relative;
+            left: 16%;
+        }
+        .Contact{
+            position: relative;
+            left: 30%;
+            background-color: #00ff40;
+
+        }
+        .headline{
+            position: relative;
+            font-family: Candara;
+            color: blue;
+            left: 5%;
+        }
+        .repoheading{
+            font-family: Candara;
+            font-size: 25px;
+            color: blue;
+        }
+        .saranInfo,
+        .harishInfo {
+            position: relative;
+            min-height: 80px;
+            width: 250px;
+            left: 10%;
+            color: gray;
+            font-family: Candara;
+            font-size: 18px;
+        }
+
+    </style>
 </head>
-<body>
-<div class="Tabbar" id="tabheader" style="position: relative;color: darkslategrey;">
-    <a href=""></a>
-    <a href=""></a>
-    <a href=""></a>
+<body style="background-color:	#00ff40;">
+
+<div class="tab">
+    <button class="tablinks" onclick="openPage(event, 'Home')" id="defaultOpen">Home</button>
+    <button class="tablinks" onclick="openPage(event, 'About Us')">About Us</button>
+    <button class="tablinks" onclick="openPage(event, 'Contact Us')">Contact Us</button>
+    <button class="tablinks" onclick="openPage(event, 'Logout')">Logout</button>
 </div>
+
+<div id="Home" class="tabcontent">
+    <h1>Welcome to Lab Assignment-1</h1>
+    <p>Excited for doing some fun stuff?</p>
+</div>
+
+<div id="About Us" class="tabcontent">
+    <h1><b>About Us</b></h1>
+    <p class = "Sub-head"><b>As part of this <i>Lab Assignment</i> we are :-</b></p>
+    <ul class = "big">
+        <li>Creating Login to our application using Social login by using any of the <a href="https://developers.google.com/identity/protocols/OAuth2ServiceAccount">OAuth 2.0 Service</a> from Social Networking Service Providers like <b>(Facebook, Google, LinkedIn, Yahoo, Twitter, Instagram</b>).</li>
+        <li>Using <a href="https://www.w3schools.com/html/html5_webstorage.asp">HTML5 Local storage</a> to store login/ register details of users.</li>
+        <li>Creating <a href="https://en.wikipedia.org/wiki/Mashup_(web_application_hybrid)">Mashup</a> home page that uses some of the web services and contains user name and logout button. </li>
+    </ul>
+    </p>
+</div>
+
+<div id="Contact Us" class="tabcontent">
+    <div class = "Contact">
+    <div class="headline">
+        <h2 style="left: 10%">Project Team Contact Information</h2>
+    </div>
+    <div class="saranInfo">
+        <b>NAME  :</b> Saran Akkiraju </br>
+        <b>ID  &nbsp &nbsp &nbsp &nbsp :</b> 2</br>
+        <b>EMAIL :</b> saf2k@mail.umkc.edu</br>
+    </div>
+
+    <div class="harishInfo">
+        <b>NAME  :</b> Harish Tata </br>
+        <b>ID &nbsp &nbsp &nbsp &nbsp  :</b> 50</br>
+        <b>EMAIL :</b> hthnv@mail.umkc.edu</br>
+    </div>
+    <div class="gitdiv">
+        <p class="repoheading"><b>Click on the Logo to explore our <i>GITHUB REPO</i></b></p>
+        <p class="gitimg"><a  id="GotoRepo" href="https://github.com/htata31/CS5551_TEAM8_LABASSIGN_ID_50_02"><img  src="GitHub-Mark.png" alt="GotoRepo"  ></a></p>
+
+    </div>
+    </div>
+</div>
+
+<div id="Logout" class="tabcontent">
+</div>
+
+<script>
+    function openPage(evt, PageName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(PageName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>
+
 </body>
 </html>
