@@ -1,7 +1,6 @@
 var loginApp= angular.module('loginApp',[]);
 
 loginApp.controller('loginAppcontroller',['$scope' ,function($scope){
-
     $scope.gmail={
         username:"",
         email:""
@@ -22,7 +21,7 @@ loginApp.controller('loginAppcontroller',['$scope' ,function($scope){
                                 $scope.gmail.username= resp.displayName;
                                 $scope.gmail.email =resp.emails[0].value;
                                 $scope.g_image=resp.image.url;
-                                window.location = "HomePage.html";
+                                window.location = "HomePage.html?"+$scope.gmail.username;
                             });
 
                         });
