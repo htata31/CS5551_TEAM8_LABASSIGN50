@@ -163,26 +163,37 @@
     </div>
 </div>
 
-<div id="Logout" class="tabcontent">
-</div>
+<div id="Logout" class="tabcontent" ></div>
 
 <script>
     function openPage(evt, PageName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
+        if(PageName=="Logout")
+        {
+            window.location.href ="Login.html";
         }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        else
+        {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(PageName).style.display = "block";
+            evt.currentTarget.className += " active";
         }
-        document.getElementById(PageName).style.display = "block";
-        evt.currentTarget.className += " active";
     }
 
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
+
+    function Logout()
+    {
+        window.location.href ="Login.html";
+    }
 </script>
 </body>
 </html>
