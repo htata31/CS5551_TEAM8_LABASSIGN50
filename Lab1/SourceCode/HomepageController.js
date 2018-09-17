@@ -25,6 +25,20 @@ angular.module('homepage',[])
                 }
             })
         }
+        if ($scope.number != "" && $scope.type != "") {
+            $scope.getResult = function () {
+                $http.get("http://numbersapi.com/" + $scope.number + "/" + $scope.type).success(function (data) {
+                    try {
+                        console.log("hello");
+                        $scope.result = data;
+                    }
+                    catch (err) {
+                        document.getElementById("errormsg").innerHTML = "Please Correct your search item";
+                    }
+
+                })
+            }
+        }
         // $scope.searchDescription=localStorage.getItem("Description");
         // $scope.description = "Description:";
         // $scope.wiki = localStorage.getItem("wikilink");
