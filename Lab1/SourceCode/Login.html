@@ -1,0 +1,138 @@
+<html>
+<head>
+    <title>Google Signin</title>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<meta name="google-signin-client_id" content="980135476714-gq9g8dd8st6gj3894idrud4no2t07e82.apps.googleusercontent.com">-->
+    <!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="Oauth.js"></script>-->
+    <style>
+        .g-signin2
+        {
+            margin-left: 100px;
+            margin-right: 200px;
+        }
+        .data{
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+<div>
+    <input type="text" placeholder="Enter Username" id="unsignin">
+    <input type="password" placeholder="Enter password" id="pwdsignin">
+    <input type="button" id="signinbtn" onclick="SignIn()" value="Sign In">
+    <input type="button" id="signupbtn" onclick="document.getElementById('signupform').style.display='block'" value="Signup">
+    <u style="color: blue">Forgot password?</u>
+</div>
+
+<div id="signupform" style="display: none" class="signup">
+    <span onclick="ClosePopup()" class="close" title="Close Modal">&times;</span>
+    <form>
+        <label ><b> Username</b></label></br>
+        <input id="username" type="text" placeholder="Enter username"></br>
+        <label><b> Email</b></label></br>
+        <input id="email" type="text" placeholder="Enter your Email"></br>
+        <label><b> Password</b></label></br>
+        <input  id="password" type="password" placeholder="Enter Password again"></br>
+        <label><b> Repeat Password</b></label></br>
+        <input id="repassword" type="password" placeholder="Enter Password again" ></br>
+        <label> <b>Security Question :</b></label></br>
+        <label>What is your Favourite place?</label>
+        <input type="text" id="securityanswer" >
+        <p><input type="checkbox" id="policycheck"/>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p></br>
+        <p>
+            <input type="button"  disabled="true" class="inputButton" id="signup" onclick="SignUp()" value=" Sign Up " />
+        </p>
+    </form>
+</div>
+
+<!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
+<!--<div class="data">-->
+    <!--&lt;!&ndash;<p>Profile Details</p>&ndash;&gt;-->
+    <!--<img  id = "pic" class = "img-circle" width = "100px" height = "100px"/>-->
+    <!--&lt;!&ndash;<p>Email Address</p>&ndash;&gt;-->
+    <!--<p id = "email" class = "alert alert-danger"></p>-->
+    <!--<button onclick = "signOut()" class = "btn btn-danger">SignOut</button>-->
+<!--</div>-->
+<script>
+    var checker = document.getElementById('policycheck');
+    var signupbtn = document.getElementById('signup');
+    checker.onchange = function() {
+        if(this.checked){
+            signupbtn.disabled = false;
+        } else {
+            signupbtn.disabled = true;
+        }
+    };
+    function ClearField()
+    {
+        document.getElementById('signupform').style.display = 'none';
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("repassword").value = "";
+        checker.checked=false;
+    }
+    function ClosePopup()
+    {
+        ClearField();
+    }
+    function SignIn() {
+        var username=document.getElementById("unsignin").value;
+        var pwd=document.getElementById("pwdsignin").value;
+        var getvalue=localStorage.getItem(username);
+        if(getvalue==null)
+        {
+            alert("Not a user");
+        }
+        if(getvalue==pwd)
+        {
+            window.location.href = "HomePage.html";
+        }
+        else
+        {
+            alert("Password or Username may be wrong");
+        }
+        
+    }
+    function SignUp() {
+        var username=document.getElementById("username").value;
+        var pwd=document.getElementById("password").value;
+        var repwd=document.getElementById("repassword").value;
+        var email=document.getElementById("email").value;
+        var securityans=document.getElementById("securityanswer");
+        var val=localStorage.getItem(username);
+        if(!val)
+        {
+            var pwdval=pwd==repwd? true : false;
+            var emailval=email.endsWith(".com");
+            if ( pwdval && emailval )
+            {
+                localStorage.setItem(username, pwd);
+                localStorage.setItem(email,securityans);
+                ClearField();
+            }
+            else
+            {
+                if(!pwdval)
+                {
+                    alert("Both Passwords are not matching");
+                }
+                if(!emailval)
+                {
+                    alert("email is not correct");
+                }
+
+            }
+        }
+        else
+        {
+            alert("Already you are signed up ");
+        }
+    }
+</script>
+</body>
+</html>
