@@ -81,7 +81,7 @@
 
 </head>
 
-<body style="background-color:	#00ff40;">
+<body ng-app="loginApp" ng-controller="loginAppcontroller" style="background-color:	#00ff40;">
 <h1 align="center"><b>Mashup Application</b></h1>
 <h2 ><b>Login</b></h2>
 <div>
@@ -94,7 +94,7 @@
     <input type="button" style ="width: 250px; display: inline-block;" id="signinbtn" onclick="SignIn()" value="Sign In">
     <input type="button" id="signupbtn" onclick="document.getElementById('modal-wrapper').style.display='block'" value="Create a new account">
     <u style="color: blue">Forgot password?</u>
-    <input type="button" class = "btn-openid" ng-click="onGoogleLogin()" value="Login through Google" style="height: 25px; width: 200px">
+    <input type="button" ng-click="onGoogleLogin()" value="Login through Google" style="height: 25px; width: 200px">
 </div>
 
 <div id="modal-wrapper" class="modal">
