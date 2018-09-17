@@ -4,12 +4,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
+    <script src="HomepageController.js"></script>
     <style>
         body {font-family: Arial;}
         .homebody{
             font-family: Candara;
             font-size: 18px;
         }
+         .NumberResult {
+             background: #f2f2f2;
+             height: 25px;
+             width: 400px;
+             border: 1px dashed #ccc;
+             padding: 1em;
+         }
         /* Style the tab */
         .tab {
             overflow: hidden;
@@ -110,8 +118,15 @@
         <p><b>{{wikiheading}}</b></p>
         <p><a href="{{wiki}}"> {{wiki}}</a> </p>
         <p><img src="{{searchimage}}"></p>
+        <p> Know Some Interesting Facts of numbers</p>
+        Number :<input type = "text" ng-model ="number"/>
+        Type   :<input type = "text" ng-model ="type"/>
+        <button id="btn1" ng-click="getResult()"> Fun Fact</button>
+        <br><br><br>
     </div>
-
+    <div class = "NumberResult">
+        {{result}}
+    </div>
 </div>
 
 <div id="About Us" class="tabcontent">
@@ -122,7 +137,6 @@
         <li>Using <a href="https://www.w3schools.com/html/html5_webstorage.asp">HTML5 Local storage</a> to store login/ register details of users.</li>
         <li>Creating <a href="https://en.wikipedia.org/wiki/Mashup_(web_application_hybrid)">Mashup</a> home page that uses some of the web services and contains user name and logout button. </li>
     </ul>
-    </p>
 </div>
 
 <div id="Contact Us" class="tabcontent">
@@ -170,6 +184,5 @@
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
 </script>
-<script src="HomepageController.js"></script>
 </body>
 </html>
