@@ -1,66 +1,149 @@
 <html>
 <head>
-    <title>Google Signin</title>
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-    <!--<meta name="google-signin-client_id" content="980135476714-gq9g8dd8st6gj3894idrud4no2t07e82.apps.googleusercontent.com">-->
-    <!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-    <!--<script src="Oauth.js"></script>-->
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="OauthScript.js" type="text/javascript"></script>
     <style>
-        .g-signin2
-        {
-            margin-left: 100px;
-            margin-right: 200px;
+        label{
+            display: inline-block;
+            float: left;
+            clear: left;
+            width: 250px;
+            text-align: right;
         }
-        .data{
-            display: none;
+        input {
+            display: inline-block;
+            float: left;
         }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 26px;
+            border: none;
+            cursor: pointer;
+            width: 90%;
+            font-size:20px;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .closecontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+            position: relative;
+        }
+
+        .modal {
+            display:none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modalcont {
+            background-color: #fefefe;
+            margin: 4% auto 15% auto;
+            border: 1px solid #888;
+            width: 40%;
+            padding-bottom: 30px;
+        }
+
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+        .close:hover,.close:focus {
+            color: red;
+            cursor: pointer;
+        }
+
+        .animate {
+            animation: zoom 0.6s
+        }
+        @keyframes zoom {
+            from {transform: scale(0)}
+            to {transform: scale(1)}
+        }
+
     </style>
 
 </head>
 
-<body>
+<body style="background-color:	#00ff40;">
+<h1 align="center"><b>Mashup Application</b></h1>
+<h2 ><b>Login</b></h2>
 <div>
-    <input type="text" placeholder="Enter Username" id="unsignin">
-    <input type="password" placeholder="Enter password" id="pwdsignin">
-    <input type="button" id="signinbtn" onclick="SignIn()" value="Sign In">
-    <input type="button" id="signupbtn" onclick="document.getElementById('signupform').style.display='block'" value="Signup">
+    <label>Username: </label> <input type="text"  id="unsignin">
+    <br>
+    <br>
+    <label>Password:  </label><input type="password"  id="pwdsignin">
+    <br>
+    <br>
+    <input type="button" style ="width: 250px; display: inline-block;" id="signinbtn" onclick="SignIn()" value="Sign In">
+    <input type="button" id="signupbtn" onclick="document.getElementById('modal-wrapper').style.display='block'" value="Create a new account">
     <u style="color: blue">Forgot password?</u>
+    <input type="button" class = "btn-openid" ng-click="onGoogleLogin()" value="Login through Google" style="height: 25px; width: 200px">
 </div>
 
-<div id="signupform" style="display: none" class="signup">
-    <span onclick="ClosePopup()" class="close" title="Close Modal">&times;</span>
-    <form>
-        <label ><b> Username</b></label></br>
-        <input id="username" type="text" placeholder="Enter username"></br>
-        <label><b> Email</b></label></br>
-        <input id="email" type="text" placeholder="Enter your Email"></br>
-        <label><b> Password</b></label></br>
-        <input  id="password" type="password" placeholder="Enter Password again"></br>
-        <label><b> Repeat Password</b></label></br>
-        <input id="repassword" type="password" placeholder="Enter Password again" ></br>
-        <label> <b>Security Question :</b></label></br>
-        <label>What is your Favourite place?</label>
-        <input type="text" id="securityanswer" >
-        <p><input type="checkbox" id="policycheck"/>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p></br>
-        <p>
+<div id="modal-wrapper" class="modal">
+
+    <form class="modalcont animate" action="/action_page.php">
+
+        <div class="closecontainer">
+            <span onclick= "closepopup()" class="close" title="Close PopUp">&times;</span>
+            <h1 style="text-align:center">Sign Up Form</h1>
+        </div>
+
+        <div class="container">
+            <label ><b> Username</b></label>
+            <input id="username" type="text" placeholder="Enter username"><br>
+            <label><b> Email</b></label>
+            <input id="email" type="text" placeholder="Enter your Email"><br>
+            <label><b> Password</b></label>
+            <input  id="password" type="password" placeholder="Enter Password again"><br>
+            <label><b> Repeat Password</b></label>
+            <input id="repassword" type="password" placeholder="Enter Password again" ><br>
+            <label> <b>Security Question :</b></label><br>
+            <label>What is your Favourite place?</label>
+            <input type="text" id="securityanswer" ><br>
+            <label>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a></label><input type="checkbox" id="policycheck"/>
+            <br>
+            <br>
             <input type="button"  disabled="true" class="inputButton" id="signup" onclick="SignUp()" value=" Sign Up " />
-        </p>
+        </div>
+
     </form>
+
 </div>
 
-<!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
-<!--<div class="data">-->
-    <!--&lt;!&ndash;<p>Profile Details</p>&ndash;&gt;-->
-    <!--<img  id = "pic" class = "img-circle" width = "100px" height = "100px"/>-->
-    <!--&lt;!&ndash;<p>Email Address</p>&ndash;&gt;-->
-    <!--<p id = "email" class = "alert alert-danger"></p>-->
-    <!--<button onclick = "signOut()" class = "btn btn-danger">SignOut</button>-->
-<!--</div>-->
 <script>
-    var checker = document.getElementById('policycheck');
+    // If user clicks anywhere outside of the modal, Modal will close
+
+    var modal = document.getElementById('modal-wrapper');
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+
+<script>
+    var checkbox = document.getElementById('policycheck');
     var signupbtn = document.getElementById('signup');
-    checker.onchange = function() {
+    checkbox.onchange = function() {
         if(this.checked){
             signupbtn.disabled = false;
         } else {
@@ -69,17 +152,21 @@
     };
     function ClearField()
     {
-        document.getElementById('signupform').style.display = 'none';
+        document.getElementById('modal-wrapper').style.display='none';
         document.getElementById("username").value = "";
         document.getElementById("password").value = "";
         document.getElementById("email").value = "";
         document.getElementById("repassword").value = "";
-        checker.checked=false;
+        document.getElementById("policycheck").value = "";
+        checkbox.checked=false;
     }
-    function ClosePopup()
+    function closepopup()
     {
+
         ClearField();
+
     }
+
     function SignIn() {
         var username=document.getElementById("unsignin").value;
         var pwd=document.getElementById("pwdsignin").value;
@@ -133,6 +220,18 @@
             alert("Already you are signed up ");
         }
     }
+</script>
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript">
+    (function()
+    {
+        var node1= document.createElement('script');
+        node1.type= 'text/javascript';
+        node1.async= true;
+        node1.src='https://apis.google.com/js/client.js?onload=onLoad';
+        var node2 =document.getElementsByTagName('script')[0];
+        node2.parentNode.insertBefore(node1,node2);
+    })();
 </script>
 </body>
 </html>
