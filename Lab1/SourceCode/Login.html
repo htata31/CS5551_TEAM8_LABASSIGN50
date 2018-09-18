@@ -33,12 +33,20 @@
         .loginpage
         {
             position: relative;
-            left: 28%;
+            left: 25%;
+            font-family:"Cambria";
+            font-size: 14px;
         }
         .logButtons
         {
             position: relative;
-            left: 41%;
+            left: 44%;
+            font-family: Candara;
+        }
+        .authbtn
+        {
+            position: relative;
+            left: 43%;
         }
         .closecontainer {
             text-align: center;
@@ -91,11 +99,11 @@
 
 </head>
 
-<body ng-app="loginApp" ng-controller="loginAppcontroller" style="background-color:	#00ff40;">
-<h1 align="center"><b>Mashup Application</b></h1>
-<h2 align="center" ><b>Login/SignUp</b></h2>
+<body background="Login_Bgimg.jpg" ng-app="loginApp" ng-controller="loginAppcontroller" style="background-color:	#00ff40;">
+<h1 align="center" style="font-family: Pristina; font-size: 50px"><b>Mashup Application</b></h1>
+<h2 align="center" style="font-family: Candara; font-size: 25px" ><b>Login/SignUp</b></h2>
 <div class = "loginpage">
-    <label>Username: </label> <input type="text"  id="unsignin">
+    <label>Username: </label> <input  type="text"  id="unsignin">
     <br>
     <br>
     <label>Password:  </label><input type="password"  id="pwdsignin">
@@ -103,10 +111,12 @@
     <br>
 </div>
 <div class = "logButtons">
-    <input type="button"  id="signinbtn" onclick="SignIn()" value="Sign In">
-    <input type="button" id="signupbtn" onclick="document.getElementById('modal-wrapper').style.display='block'" value="Register">
-    <u style="color: blue">Forgot password?</u><br><br>
-    <button ng-click="onGoogleLogin()" id="googlelogin" class="btn btn-primary" style=" position:relative; left:1%; font-size:17px; background-color: red; height: 30px; width: 180px" >Sign in with<span class="fa fa-google-plus-official"></span></button>
+    <input type="button" class="btn" id="signinbtn" style="left: 1%" onclick="SignIn()" value="Sign In"> &nbsp &nbsp &nbsp
+    <input style="position: relative;left: 1%" type="button" class="btn" id="signupbtn" onclick="document.getElementById('modal-wrapper').style.display='block'" value="Register">
+    <u style="color: darkblue; font-size: 16px; padding-top: 45px; margin-top: 45px">Forgot password?</u><br><br>
+</div>
+<div class="authbtn">
+    <button ng-click="onGoogleLogin()" id="googlelogin" class="btn" style=" position:relative; font-family: Candara;  font-size:18px; background-color: red; height: 30px; width: 143px" >SignIn with  <span class="fa fa-google-plus-official"></span></button>
 </div>
 
 <div id="modal-wrapper" class="modal">
