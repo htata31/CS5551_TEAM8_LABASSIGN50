@@ -3,27 +3,26 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
     <script src="HomepageController.js"></script>
     <script src="OauthScript.js" type="text/javascript"></script>
     <style>
         body {font-family: Arial;}
         .homebody{
-            font-family: Candara;
-            font-size: 18px;
+            font-family: Pristina;
+            font-size: 25px;
         }
          .NumberResult {
-             background: #f2f2f2;
-             height: 25px;
-             width: 400px;
-             border: 1px dashed #ccc;
-             padding: 1em;
+             font-size: 26px;
+             width: 800px;
          }
         /* Style the tab */
         .tab {
             overflow: hidden;
             border: 1px solid #ccc;
             background-color: #808080;
+
             top: 0px;
         }
 
@@ -49,12 +48,12 @@
             background-color: #ccc;
         }
 
-
         /* Style the tab content */
         .tabcontent {
             display: none;
             padding: 60px 12px;
             height: 100%;
+            font-family: Candara;
         }
         ul.big
         {
@@ -71,8 +70,6 @@
         .Contact{
             position: relative;
             left: 30%;
-            background-color: #00ff40;
-
         }
         .headline{
             position: relative;
@@ -91,52 +88,58 @@
             min-height: 80px;
             width: 250px;
             left: 10%;
-            color: gray;
+            color: black;
             font-family: Candara;
             font-size: 18px;
         }
 
     </style>
 </head>
-<body style="background-color:	#00ff40;">
+<body background="Login_Bgimg.jpg" style=" font-family: Candara; ">
 
 <div class="tab">
-    <button class="tablinks" onclick="openPage(event, 'Home')" id="defaultOpen">Home</button>
-    <button class="tablinks" onclick="openPage(event, 'About Us')">About Us</button>
-    <button class="tablinks" onclick="openPage(event, 'Contact Us')">Contact Us</button>
-    <button class="tablinks" onclick="openPage(event, 'Logout')">Logout</button>
+    <button class="tablinks" style="font-family: Candara;" onclick="openPage(event, 'Home')" id="defaultOpen">Home</button>
+    <button class="tablinks" style="font-family: Candara;" onclick="openPage(event, 'About Us')">About Us</button>
+    <button class="tablinks" style="font-family: Candara;" onclick="openPage(event, 'Contact Us')">Contact Us</button>
+    <button class="tablinks" style="font-family: Candara;" onclick="openPage(event, 'Logout')">Logout</button>
 </div>
 
 <div id="Home" class="tabcontent " ng-app="homepage" ng-controller="homectrl">
-    <h1><label id="username"></label></h1>
-    <p>Excited for doing some fun stuff?</p>
+    <b>
+        <h1><b><label id="username"  ></label></b></h1>
+    <p style="font-size: 25px; font-family: Pristina">Ready to know about some cool stuff ? Search below </p>
     <input type="search" placeholder="Search Here" id="searchitem" ng-model="searchitem">
-    <button id="btn" ng-click="getSearchResult()"> Show Result </button>
+    <button id="btn" class="btn btn-default" ng-click="getSearchResult()"> Show Result </button>
     <div class="homebody">
+
         <p id="errormsg"></p>
         <p><b>{{description}}</b></p>
         <p>{{searchDescription}}</p>
         <p><b>{{wikiheading}}</b></p>
         <p><a href="{{wiki}}"> {{wiki}}</a> </p>
-        <p><img src="{{searchimage}}"></p>
-        <p> Know Some Interesting Facts of numbers</p>
+        <p><img  ng-src="{{searchimage}} "></p>
+        <p style="font-size: 25px;font-family: Pristina"> Know Some Interesting Facts of numbers. Enter the number and its <b>type(year,date,math,trivia)</b></p>
         Number :<input type = "search" ng-model ="number"/>
         Type   :<input type = "search" ng-model ="type"/>
         <button id="btn1" ng-click="getResult()"> Fun Fact</button>
         <br><br><br>
+
     </div>
     <div class = "NumberResult">
         {{result}}
     </div>
+    </b>
 </div>
 
 <div id="About Us" class="tabcontent">
     <h1><b>About Us</b></h1>
-    <p class = "Sub-head"><b>As part of this <i>Lab Assignment</i> we are :-</b></p>
-    <ul class = "big">
-        <li>Creating Login to our application using Social login by using any of the <a href="https://developers.google.com/identity/protocols/OAuth2ServiceAccount">OAuth 2.0 Service</a> from Social Networking Service Providers like <b>(Facebook, Google, LinkedIn, Yahoo, Twitter, Instagram</b>).</li>
+    <p class = "Sub-head" style="font-size: 25px"><b>As part of this <i>Lab Assignment</i> we are :-</b></p>
+    <ul class = "big" style="font-size: 20px">
+        <b>
+        <li>Creating Login to our application using Social login of <a href="https://developers.google.com/identity/protocols/OAuth2ServiceAccount">OAuth 2.0 Service</a> from <b>Google</b>.</li>
         <li>Using <a href="https://www.w3schools.com/html/html5_webstorage.asp">HTML5 Local storage</a> to store login/ register details of users.</li>
-        <li>Creating <a href="https://en.wikipedia.org/wiki/Mashup_(web_application_hybrid)">Mashup</a> home page that uses some of the web services and contains user name and logout button. </li>
+        <li>Creating <a href="https://en.wikipedia.org/wiki/Mashup_(web_application_hybrid)">Mashup</a> home page that uses <b>Google Knowledge Graph Search API , Number API</b> and contains user name and logout button. </li>
+        </b>
     </ul>
 </div>
 

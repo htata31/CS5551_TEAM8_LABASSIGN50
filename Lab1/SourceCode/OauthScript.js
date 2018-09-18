@@ -1,10 +1,6 @@
 var loginApp= angular.module('loginApp',[]);
 
 loginApp.controller('loginAppcontroller',['$scope' ,function($scope){
-    $scope.gmail={
-        username:"",
-        email:""
-    };
     $scope.onGoogleLogin=function () {
         var params= {
                 clientid:'825316471413-islflqo04lk4h5j7l3c7ju98f0o7nsfj.apps.googleusercontent.com',
@@ -18,10 +14,10 @@ loginApp.controller('loginAppcontroller',['$scope' ,function($scope){
                         );
                         request.execute(function (resp){
                             $scope.$apply(function(){
-                                $scope.gmail.username= resp.displayName;
-                                $scope.gmail.email =resp.emails[0].value;
+                                $scope.username= resp.displayName;
+                                $scope.email =resp.emails[0].value;
                                 $scope.g_image=resp.image.url;
-                                window.location = "HomePage.html?"+$scope.gmail.username;
+                                window.location = "HomePage.html?"+$scope.username;
                             });
 
                         });
@@ -32,6 +28,6 @@ loginApp.controller('loginAppcontroller',['$scope' ,function($scope){
                 scope:'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
             };
         gapi.auth.signIn(params);
-        $scope.name=$scope.gmail.username;
+        $scope.name=$scope.username;
     }
 }]);
