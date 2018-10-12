@@ -154,14 +154,13 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers'])
 
 .controller('loginctrl', function($scope, $http,$window) {
   $scope.Login = function() {
-    // var uname=$scope.login_username;
-    // var pwd=$scope.login_password;
-    // var val= pwd==localStorage.getItem(uname)?true:false;
-    // if(val)
-    // {
-    //   $window.location.href = 'homepage.html';
-    // }
-    $window.location.href = 'homepage.html';
+    var uname=$scope.login_username;
+    var pwd=$scope.login_password;
+    var val= pwd==localStorage.getItem(uname)?true:false;
+    if(val)
+    {
+      $window.location.href = 'homepage.html';
+    }
   };
   $scope.Register= function()
   {
