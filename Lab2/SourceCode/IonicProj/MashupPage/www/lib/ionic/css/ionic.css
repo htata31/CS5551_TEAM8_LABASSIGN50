@@ -3491,6 +3491,7 @@ ion-infinite-scroll {
 
 /* If you change these, change platform.scss as well */
 .has-header {
+  background-color: aqua;
   top: 44px; }
 
 .no-header {

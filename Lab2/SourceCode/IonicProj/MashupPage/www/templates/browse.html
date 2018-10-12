@@ -1,20 +1,7 @@
-<ion-view view-title="Top Recipie List">
+<ion-view view-title="Bar Code Scanner plugin">
   <ion-content >
     <div ng-controller="browsectrl">
-          <div>
-            <b><input type="text"  class="name" id="food"
-              placeholder="Ingredient Name" ng-model="food" required></b>
-
-              <button  class="button button-positive" ng-click="getNutrition()" > Find</button>
-          </div>
-          <div>
-              <h3 class="widget-title" >{{toprecipes}}</h3>
-              <table  class="tftable" >
-                  <tr ng-repeat="x in foodDishes">
-                      <td>{{x}}</td>
-                  </tr>
-              </table>
-          </div>
+            <button class="button button-positive" ng-click="scanBarcode()">BarCodeScanner</button>
     
     </div>
   </ion-content>

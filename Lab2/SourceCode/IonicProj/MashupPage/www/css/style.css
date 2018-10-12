@@ -1,1 +1,8 @@
 /* Empty. Add your own CSS if you like */
+.title
+{
+    font-family: Candara;
+}
+.contentbg{
+    background: url('../www/wallpaper.jpg');
+}

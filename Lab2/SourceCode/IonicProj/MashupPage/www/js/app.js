@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic','ngCordova', 'starter.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -35,7 +35,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
-
   .state('app.search', {
     url: '/search',
     views: {
@@ -75,7 +74,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   $urlRouterProvider.otherwise('/app/playlists');
 })
 
-.controller('searchctrl', function($scope, $http) {
+.controller('searchctrl', function($scope, $http,$cordovaBarcodeScanner) {
   $scope.getSearchResult = function() {
     $scope.header="Details of the " +$scope.searchitem+ " in the walmart";
     $http.get("/search?query="+$scope.searchitem+"&format=json&apiKey=bgud2m46mbkgyapsg9wfywaw").then(function(data)
@@ -111,7 +110,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     
     
       var readVal="";
-      $scope.toprecipes="Top Recipies of"+$scope.searchitem;
+      $scope.toprecipes="Top Recipies of "+$scope.searchitem;
       $http.get('https://www.food2fork.com/api/search?key=7881b1b04971e10d08f6ceb13aba53e3&q='+$scope.searchitem+'&sort=r').success(function (data) {
               var dishes=[];
               for(var i=0;i<7;i++) {
@@ -127,77 +126,80 @@ angular.module('starter', ['ionic', 'starter.controllers'])
           console.log("Inside "+readVal);
           })
     
-
+          $scope.scanBarcode = function() {
+            $cordovaBarcodeScanner.scan().then(function(imageData) {
+                alert(imageData.text);
+                console.log("Barcode Format -> " + imageData.format);
+                console.log("Cancelled -> " + imageData.cancelled);
+            }, function(error) {
+                console.log("An error happened -> " + error);
+            });
+        };
+      
   }
 })
 
-// .controller('browsectrl', function($scope, $http) {
-//     $scope.getNutrition = function () {
-//       if ($scope.food) {
-//           var readVal="";
-//           $scope.toprecipes="Top Recipies";
-//           $http.get('https://www.food2fork.com/api/search?key=7881b1b04971e10d08f6ceb13aba53e3&q='+$scope.food+'&sort=r').success(function (data) {
-//                   var dishes=[];
-//                   for(var i=0;i<7;i++) {
-//                       dishes.push(new Array(data.recipes[i].title));
-//                   }
-//                   console.log(dishes.length);
-//                   $scope.foodDishes =[];
-//                   for(var x=0;x<dishes.length;x++) {
-//                       var val= dishes[x];
-//                       readVal=readVal+" "+dishes[x];
-//                       $scope.foodDishes.push(val.toString());
-//                   }
-//               console.log("Inside "+readVal);
-//               })
-//         }
-//     }
-// })
+.controller('browsectrl', function($scope, $http,$cordovaBarcodeScanner) {
+  $scope.scanBarcode = function() {
+    $cordovaBarcodeScanner.scan().then(function(imageData) {
+        alert(imageData.text);
+        console.log("Barcode Format -> " + imageData.format);
+        console.log("Cancelled -> " + imageData.cancelled);
+    }, function(error) {
+        console.log("An error happened -> " + error);
+    });
+};
+})
 
 
 .controller('loginctrl', function($scope, $http,$window) {
   $scope.Login = function() {
-    $window.location.href = 'homePage.html';
-  }
+    // var uname=$scope.login_username;
+    // var pwd=$scope.login_password;
+    // var val= pwd==localStorage.getItem(uname)?true:false;
+    // if(val)
+    // {
+    //   $window.location.href = 'homepage.html';
+    // }
+    $window.location.href = 'homepage.html';
+  };
   $scope.Register= function()
   {
-    $window.location.href = 'Register.html';
+    $window.location.href = 'register.html';
   }
 })
 
 
+.controller('register', function($scope, $http,$window) {
+  concole.log("entered");
+  $scope.SignUp = function() {
+    concole.log("entered1");
+    var username=$scope.Username;
+    var password=$scope.login_password;
+    var confirmpwd=$scope.login_cpassword;
 
-app.controller('ImagePickerController', function($scope, $cordovaImagePicker, $ionicPlatform, $cordovaContacts) {
- 
-  $scope.collection = {
-      selectedImage : ''
-  };
-
-  $ionicPlatform.ready(function() {
-
-      $scope.getImageSaveContact = function() {       
-          // Image picker will load images according to these settings
-          var options = {
-              maximumImagesCount: 1, // Max number of selected images, I'm using only one for this example
-              width: 800,
-              height: 800,
-              quality: 80            // Higher is better
-          };
-
-          $cordovaImagePicker.getPictures(options).then(function (results) {
-              // Loop through acquired images
-              for (var i = 0; i < results.length; i++) {
-                  $scope.collection.selectedImage = results[i];   // We loading only one image so we can use it like this
-
-                  window.plugins.Base64.encodeFile($scope.collection.selectedImage, function(base64){  // Encode URI to Base64 needed for contacts plugin
-                      $scope.collection.selectedImage = base64;
-                      $scope.addContact();    // Save contact
-                  });
-              }
-          }, function(error) {
-              console.log('Error: ' + JSON.stringify(error));    // In case of error
-          });
-      }
+    var pwdval=password==confirmpwd? true:false;
     
-    });
-  } )
+            if ( pwdval  )
+            {
+                localStorage.setItem(username, password);
+                $window.location.href = 'index.html';
+            }
+            else
+            {
+                if(!pwdval)
+                {
+                    alert("Both Passwords are not matching");
+                }
+            }
+    
+  };
+  
+});
+
+function signOut() {
+  window.location.href="index.html";
+};
+
+
+  
