@@ -1,0 +1,36 @@
+<ion-view view-title="Search">
+  <ion-content>
+    <div ng-controller="searchctrl">
+    <div >
+      <p><h2><b>Search a Food Item </b></h2></p>
+        <div >
+          <input type="text"  class="find_input" required="required" ng-model="searchitem" placeholder="Search Here">
+        </div>
+        <br>
+      <button class="button button-positive" ng-click="getSearchResult()">Search </button>
+    <!-- <input type="button" class="button button-calm"  ng-click="getSearchResult()" value="Find"/> -->
+    </div>
+    <div id="resDIV" >
+      <!--<p id="errormsg"></p>-->
+      <p><h3><b>{{header}} </b></h3></p>
+      <p><b>{{name}}</b> {{searchname}}</p>
+      <!-- <p><b>{{ratingheader}}</b>{{rating}} <img ng-src="{{ratingimage}}"></p> -->
+      <p><b>{{priceheader}}</b>{{price}}</p>
+      <p><b>{{descriptionheader}}</b></p>
+      <p>{{searchDescription}}</p>
+      <p><b>{{stockheader}}</b>{{stockavailable}}</p>
+      <p><img ng-src="{{searchimage}}"></p>
+
+      <div>
+          <h3 class="widget-title" >{{toprecipes}}</h3>
+          <table  class="tftable" >
+              <tr ng-repeat="x in foodDishes">
+                  <td>{{x}}</td>
+              </tr>
+          </table>
+      </div>
+      
+    </div>
+    </div>
+  </ion-content>
+</ion-view>
