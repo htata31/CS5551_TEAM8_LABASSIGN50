@@ -6,3 +6,7 @@
 .contentbg{
     background: url('../www/wallpaper.jpg');
 }
+.gray-content
+{
+  background-color:aqua; 
+}

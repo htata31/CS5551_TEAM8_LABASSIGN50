@@ -4,53 +4,66 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
+
     <link rel="manifest" href="manifest.json">
+
+
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-	
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="js/ng-cordova.min.js"></script>
     <script src="cordova.js"></script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script> -->
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+    
+    <!-- your app's js -->
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
   </head>
-  <body style="background-color:aqua" ng-app="starter">
-<ion-pane>
-  <ion-header-bar class="bar-stable">
-  <h1 class="title">Register Page</h1>
-  </ion-header-bar>
-  <ion-content ng-controller="register">
+  <body style="background-color:aqua"  ng-app="starter" >
+    <ion-pane>
+      <ion-header-bar >
+            <h1 class="title">Register Page</h1>
+      </ion-header-bar>
+      <ion-content ng-controller="registerctrl" >
         <div >
-                <label class="item item-input">
-                  <span class="input-label">First Name</span>
-                  <input type="text" ng-model="Name">
-                </label>
-                <label class="item item-input">
-                        <span class="input-label">Last Name</span>
-                        <input type="text" ng-model="lastName">
-                </label>
-
-                <label class="item item-input">
-                        <span class="input-label">Email</span>
-                        <input type="text" ng-model="Username">
-                </label>
-
-                <label class="item item-input">
-                  <span class="input-label">Password</span>
-                  <input type="password" ng-model="login_password">
-                </label>
-
-                <label class="item item-input">
-                        <span class="input-label">Confirm Password</span>
-                        <input type="password" ng-model="login_cpassword">
+            <br>
+                <label style="position: relative;left: 10%;width: 80%" class="item item-input">
+                        <!-- <span class="input-label">First Name</span> -->
+                        <input type="text" placeholder="First Name" >
                 </label>
                 <br>
-                
-                  <button class="button  button-positive" style="position: relative; left:45%" align="center" ng-click="SignUp()">Sign Up</button>
+                <label style="position: relative;left: 10%;width: 80%" class="item item-input">
+                        <!-- <span class="input-label">Last Name</span> -->
+                        <input type="text" placeholder="Last Name">
+                </label>
+                <br>
+                <label style="position: relative;left: 10%;width: 80%" class="item item-input">
+                        <!-- <span class="input-label">Email</span> -->
+                        <input type="text" ng-model="register_uname" placeholder="email">
+                </label>
+                <br>
+                <label style="position: relative;left: 10%;width: 80%" class="item item-input">
+                        <!-- <span class="input-label">Password</span> -->
+                        <input type="password" ng-model="register_pwd" placeholder="password">
+                </label>
+                <br>
+                <label style="position: relative;left: 10%;width: 80%" class="item item-input">
+                        <!-- <span class="input-label">Confirm Password</span> -->
+                        <input type="password" ng-model="register_cpwd" placeholder="confirmPassword">
+                </label>
+                <br>
+                <!-- <input type="button" ng-click="SignUp()" value="SignUp"/> -->
+                <button class="button button-positive" style="position: relative; left:45%;" ng-click="SignUp()" >SignUp</button>
                 
          </div>
-  </ion-content>
-</ion-pane>
+      </ion-content>
+    </ion-pane>
   </body>
 </html>

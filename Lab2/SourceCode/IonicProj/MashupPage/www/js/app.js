@@ -74,127 +74,148 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers'])
   $urlRouterProvider.otherwise('/app/playlists');
 })
 
+
+
 .controller('searchctrl', function($scope, $http,$cordovaBarcodeScanner) {
-  $scope.getSearchResult = function() {
-    $scope.header="Details of the " +$scope.searchitem+ " in the walmart";
-    $http.get("/search?query="+$scope.searchitem+"&format=json&apiKey=bgud2m46mbkgyapsg9wfywaw").then(function(data)
-    {
-      //alert("success triggered");
-      try {
-        console.log(data);
-        $scope.searchname=data.data.items[0].name;
-        $scope.name="Name: ";
+        $scope.getSearchResult = function() {
+          $scope.header="Details of the " +$scope.searchitem+ " in the walmart";
+          $http.get("/search?query="+$scope.searchitem+"&format=json&apiKey=bgud2m46mbkgyapsg9wfywaw").then(function(data)
+          {
+            //alert("success triggered");
+            try {
+              console.log(data);
+              $scope.searchname=data.data.items[0].name;
+              $scope.name="Name: ";
 
-        $scope.rating=data.data.items[0].customerRating;
-        $scope.ratingheader="Rating: ";
-        $scope.ratingimage=data.data.items[0].customerRatingImage;
+              $scope.rating=data.data.items[0].customerRating;
+              $scope.ratingheader="Rating: ";
+              $scope.ratingimage=data.data.items[0].customerRatingImage;
 
-        $scope.price=data.data.items[0].salePrice;
-        $scope.priceheader="Price: ";
+              $scope.price=data.data.items[0].salePrice;
+              $scope.priceheader="Price: ";
 
-        $scope.stockavailable=data.data.items[0].stock;
-        $scope.stockheader="Stock Available: ";
+              $scope.stockavailable=data.data.items[0].stock;
+              $scope.stockheader="Stock Available: ";
 
-        $scope.searchDescription = data.data.items[0].shortDescription;
-        $scope.descriptionheader = "Description: ";
-        
-        $scope.searchimage = data.data.items[0].thumbnailImage;
-        document.getElementById("errormsg").innerHTML ="";
+              $scope.searchDescription = data.data.items[0].shortDescription;
+              $scope.descriptionheader = "Description: ";
+              
+              $scope.searchimage = data.data.items[0].thumbnailImage;
+              document.getElementById("errormsg").innerHTML ="";
 
-      }
-      catch(err){
-        // document.getElementById("errormsg").innerHTML = "Please Correct your search item";
-      }
-    })
-
-    
-    
-      var readVal="";
-      $scope.toprecipes="Top Recipies of "+$scope.searchitem;
-      $http.get('https://www.food2fork.com/api/search?key=7881b1b04971e10d08f6ceb13aba53e3&q='+$scope.searchitem+'&sort=r').success(function (data) {
-              var dishes=[];
-              for(var i=0;i<7;i++) {
-                  dishes.push(new Array(data.recipes[i].title));
-              }
-              console.log(dishes.length);
-              $scope.foodDishes =[];
-              for(var x=0;x<dishes.length;x++) {
-                  var val= dishes[x];
-                  readVal=readVal+" "+dishes[x];
-                  $scope.foodDishes.push(val.toString());
-              }
-          console.log("Inside "+readVal);
+            }
+            catch(err){
+              // document.getElementById("errormsg").innerHTML = "Please Correct your search item";
+            }
           })
+        
+
     
-          $scope.scanBarcode = function() {
-            $cordovaBarcodeScanner.scan().then(function(imageData) {
+    
+          var readVal="";
+          $scope.toprecipes="Top 7 Dishes of "+$scope.searchitem;
+          $http.get('https://www.food2fork.com/api/search?key=7881b1b04971e10d08f6ceb13aba53e3&q='+$scope.searchitem+'&sort=r').success(function (data) 
+            {
+                  var dishes=[];
+                  for(var i=0;i<7;i++) 
+                  {
+                      dishes.push(new Array(data.recipes[i].title));
+                  }
+                  console.log(dishes.length);
+                  $scope.foodDishes =[];
+                  for(var x=0;x<dishes.length;x++)
+                  {
+                      var val= dishes[x];
+                      readVal=readVal+" "+dishes[x];
+                      $scope.foodDishes.push(val.toString());
+                  }
+              // console.log("Inside "+readVal);
+            });
+          };
+          $scope.scanBarcode = function() 
+          {
+            $cordovaBarcodeScanner.scan().then(function(imageData) 
+            {
                 alert(imageData.text);
                 console.log("Barcode Format -> " + imageData.format);
                 console.log("Cancelled -> " + imageData.cancelled);
-            }, function(error) {
+            }, function(error)
+            {
                 console.log("An error happened -> " + error);
             });
-        };
-      
-  }
-})
-
-.controller('browsectrl', function($scope, $http,$cordovaBarcodeScanner) {
-  $scope.scanBarcode = function() {
-    $cordovaBarcodeScanner.scan().then(function(imageData) {
-        alert(imageData.text);
-        console.log("Barcode Format -> " + imageData.format);
-        console.log("Cancelled -> " + imageData.cancelled);
-    }, function(error) {
-        console.log("An error happened -> " + error);
-    });
-};
+          };
 })
 
 
 .controller('loginctrl', function($scope, $http,$window) {
-  $scope.Login = function() {
+  $scope.Login = function() 
+  {
     var uname=$scope.login_username;
     var pwd=$scope.login_password;
     var val= pwd==localStorage.getItem(uname)?true:false;
+    // alert($scope.login_password);
     if(val)
     {
       $window.location.href = 'homepage.html';
     }
   };
-  $scope.Register= function()
-  {
-    $window.location.href = 'register.html';
-  }
+    $scope.Register= function()
+    {
+      $window.location.href = 'register.html';
+    };
 })
 
-
-.controller('register', function($scope, $http,$window) {
-  concole.log("entered");
-  $scope.SignUp = function() {
-    concole.log("entered1");
-    var username=$scope.Username;
-    var password=$scope.login_password;
-    var confirmpwd=$scope.login_cpassword;
-
-    var pwdval=password==confirmpwd? true:false;
-    
+.controller('registerctrl', function($scope, $http, $window) {
+  // console.log("entered");
+  $scope.SignUp = function() 
+  {
+    // console.log("entered1");
+    var username = $scope.register_uname;
+    var password = $scope.register_pwd;
+    var confirmpwd = $scope.register_cpwd;
+    // alert($scope.register_uname);
+    var pwdval= password == confirmpwd ? true : false;
+      
             if ( pwdval  )
             {
                 localStorage.setItem(username, password);
                 $window.location.href = 'index.html';
+                alert("Succefully signed up") ;               
             }
             else
             {
                 if(!pwdval)
                 {
-                    alert("Both Passwords are not matching");
+                  alert("Both Passwords are not matching");
                 }
             }
-    
-  };
+    $scope.testfunction =function(uname,pwd)
+    {
+      $scope.result = "";
+      $scope.username = uname;
+      $scope.password = pwd;
+      var username=uname;
+      var reg=new RegExp('[0-9]');
+
+      if($scope.username == '' && $scope.password == '' )
+      {
+        $scope.result = "username and password can not be empty";
+      }
+      if($scope.username == 'harish' && $scope.password == '' )
+      {
+        $scope.result = "password can not be empty";
+      }
+      if(reg.test(username[0]) )
+      {
+        $scope.result = "username cannot start with number";
+      }
+      $scope.result= true;
+    }
+  }
   
 });
+
+
 
 function signOut() {
   window.location.href="index.html";

@@ -42,7 +42,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistsCtrl', function($scope) {
- 
+ enabletesting :true;
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
