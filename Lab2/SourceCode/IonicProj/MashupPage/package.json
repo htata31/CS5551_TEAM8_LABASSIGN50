@@ -1,0 +1,23 @@
+{
+  "name": "MashupPage",
+  "version": "0.0.1",
+  "description": "An Ionic project",
+  "devDependencies": {
+    "@ionic/v1-toolkit": "^1.0.0",
+    "gulp": "^3.5.6",
+    "gulp-clean-css": "^3.7.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^3.1.0"
+  },
+  "dependencies": {
+    "@ionic-native/photo-library": "^4.15.0",
+    "cordova-plugin-photo-library": "2.1.1"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-photo-library": {
+        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "To choose photos"
+      }
+    }
+  }
+}

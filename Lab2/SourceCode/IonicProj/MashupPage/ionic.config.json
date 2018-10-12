@@ -1,0 +1,19 @@
+{
+  "name": "MashupPage",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic1",
+  "proxies": [
+    {
+      "path": "/search",
+      "proxyUrl": "http://api.walmartlabs.com/v1/search"
+    }
+  ],
+  "watchPatterns": [
+    "scss/**/*",
+    "www/**/*",
+    "!www/lib/**/*",
+    "!www/**/*.map"
+  ]
+}
