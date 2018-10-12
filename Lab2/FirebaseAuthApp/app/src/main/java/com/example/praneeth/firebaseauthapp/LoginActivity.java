@@ -29,7 +29,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextView textViewSignUp;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
-    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +36,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         progressDialog = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
         if (firebaseAuth.getCurrentUser() != null)
         {
             // Go to Home Activity
@@ -94,18 +92,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                     }
                 });
-
-        FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
-        user.updateEmail(email)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            //Log.d(Tag, "User email address updated.");
-                        }
-                    }
-                });
-
     }
     @Override
     public void onClick(View view)
