@@ -12,30 +12,25 @@
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
-  <ion-side-menu side="left">
+  <ion-side-menu  side="left">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+      <h1 class="title">Menu Items</h1>
     </ion-header-bar>
-    <ion-content >
+    <ion-content  >
       <ion-list>
         <!-- <ion-item menu-close ng-click="login()">
           Login
         </ion-item> -->
-        <ion-item menu-close href="#/app/playlists">
+        <ion-item  class="gray-content" href="#/app/playlists">
           Home
         </ion-item>
         
         <ion-item menu-close href="#/app/search">
           Search
         </ion-item>
-
-        
-
-
-        
-        <!-- <ion-item menu-close href="#/app/browse">
-          Reciepe
-        </ion-item> -->
+        <ion-item menu-close ng-click="signOut()">
+            Sign Out
+        </ion-item>
         
       </ion-list>
     </ion-content>
